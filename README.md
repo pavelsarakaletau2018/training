@@ -1,2 +1,2 @@
 # training
-Self-study
+Self-study edit

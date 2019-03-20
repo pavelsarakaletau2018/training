@@ -1,0 +1,24 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Self-study suite" parallel="tests" thread-count="1">
+  <parameter name="name1" value="Dima" />
+  <parameter name="age1" value="26" />
+
+  <listeners>
+    <listener class-name="com.home.training.listener.SuiteListener" />
+    <listener class-name="com.home.training.listener.TestListener" />
+    <listener class-name="com.home.training.listener.AnnotationTranformer" />
+  </listeners>
+
+  <test name="Example test from suite test">
+
+    <!-- <groups> <run> <include name="group1" /> <include name="group2" /> </run> </groups> -->
+
+    <!-- <classes> <class name="com.home.training.IntegerTestFactory" /> </classes> -->
+
+    <packages>
+      <package name="com.home.training" />
+    </packages>
+
+  </test>
+
+</suite>

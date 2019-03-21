@@ -3,8 +3,6 @@ package com.home.training.listener;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.testng.IAnnotationTransformer;
 import org.testng.annotations.ITestAnnotation;
 

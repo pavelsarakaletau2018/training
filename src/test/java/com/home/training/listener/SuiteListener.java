@@ -14,17 +14,17 @@ public class SuiteListener extends TestListenerAdapter implements ISuiteListener
 
     @Override
     public void onStart(ISuite suite) {
-        LOG.info("<<<<<<< SUITE START: " + suite.getName() + " >>>>>>>\n");
+        LOG.info("<<<<<<< SUITE START: '" + suite.getName() + "' >>>>>>>\n");
     }
 
     @Override
     public void onFinish(ISuite suite) {
-        LOG.info("<<<<<<< SUITE FINISH: " + suite.getName() + " with timing:");
+        LOG.info("<<<<<<< SUITE FINISH: '" + suite.getName() + "' with time results:");
         List<IInvokedMethod> invoked = suite.getAllInvokedMethods();
         invoked.forEach(m -> {
             String name = m.getTestMethod().getMethodName();
             Long time = m.getTestResult().getEndMillis() - m.getTestResult().getStartMillis();
-            LOG.info(String.format("%s, run time: %d ms", name, time));
+            LOG.info(String.format("Method: %s : %d ms", name, time));
         });
     }
 

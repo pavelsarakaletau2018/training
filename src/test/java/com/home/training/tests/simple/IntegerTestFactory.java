@@ -1,4 +1,4 @@
-package com.home.training;
+package com.home.training.tests.simple;
 
 import java.util.Random;
 

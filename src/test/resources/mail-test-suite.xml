@@ -1,0 +1,28 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Yahoo mail suite" parallel="tests" thread-count="1">
+
+  <parameter name="browser" value="chrome" />
+
+  <listeners>
+    <listener class-name="com.home.training.listener.SuiteListener" />
+    <listener class-name="com.home.training.listener.TestListener" />
+  </listeners>
+
+  <test name="Log in test">
+    <classes>
+      <class name="com.home.training.tests.mail.SignInTest" />
+    </classes>
+  </test>
+
+  <test name="Log out test">
+    <groups>
+      <run>
+        <include name="signout" />
+      </run>
+    </groups>
+    <packages>
+      <package name="com.home.training.tests.mail" />
+    </packages>
+  </test>
+
+</suite>

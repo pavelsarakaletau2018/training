@@ -1,11 +1,9 @@
-package com.home.training;
+package com.home.training.tests.simple;
 
 import static org.testng.Assert.assertEquals;
 
 import java.lang.reflect.Method;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 

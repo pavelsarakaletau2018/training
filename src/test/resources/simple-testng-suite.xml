@@ -16,7 +16,7 @@
     <!-- <classes> <class name="com.home.training.IntegerTestFactory" /> </classes> -->
 
     <packages>
-      <package name="com.home.training" />
+      <package name="com.home.training.tests.simple" />
     </packages>
 
   </test>

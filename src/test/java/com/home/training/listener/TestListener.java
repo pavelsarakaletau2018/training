@@ -22,27 +22,27 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        LOG.info("=== Start method: " + result.getName());
+        LOG.info(" =  Start method: " + result.getName());
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        LOG.info("+++ Passed method: " + result.getName());
+        LOG.info(" +  Passed method: " + result.getName());
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        LOG.info("--- Skipped method: " + result.getName());
+        LOG.info(" -  Skipped method: " + result.getName());
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        LOG.info("!!! Failure method: " + result.getName());
+        LOG.info(" !  Failure method: " + result.getName());
     }
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-        LOG.info("=== Passed with success percentage method: " + result.getName());
+        LOG.info(" =  Passed with success percentage method: " + result.getName());
 
     }
 

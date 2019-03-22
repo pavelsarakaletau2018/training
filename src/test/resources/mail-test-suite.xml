@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Yahoo mail suite" parallel="tests" thread-count="1">
+<suite name="Yahoo mail suite" parallel="tests" thread-count="3">
 
   <parameter name="browser" value="chrome" />
 
@@ -13,16 +13,20 @@
       <class name="com.home.training.tests.mail.SignInTest" />
     </classes>
   </test>
-
+  
   <test name="Log out test">
-    <groups>
-      <run>
-        <include name="signout" />
-      </run>
-    </groups>
-    <packages>
-      <package name="com.home.training.tests.mail" />
-    </packages>
+    <classes>
+      <class name="com.home.training.tests.mail.SignOutTest" />
+    </classes>
   </test>
+  
+  <test name="Log out from mail page test">
+    <classes>
+      <class name="com.home.training.tests.mail.SignOutFromMailPageTest" />
+    </classes>
+  </test>
+
+  <!-- <test name="Log out test"> <groups> <run> <include name="signout" /> </run> </groups> <packages> 
+    <package name="com.home.training.tests.mail" /> </packages> </test> -->
 
 </suite>

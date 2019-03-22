@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Yahoo mail suite" parallel="tests" thread-count="1">
+
+
+  <listeners>
+    <listener class-name="com.home.training.listener.SuiteListener" />
+    <listener class-name="com.home.training.listener.TestListener" />
+  </listeners>
+
+  <test name="Log in test via Factory">
+    <classes>
+      <class name="com.home.training.tests.mail.LogInTestFactory" />
+    </classes>
+  </test>
+  
+
+</suite>

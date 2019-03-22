@@ -4,15 +4,43 @@
   <Appenders>
     <Console name="Console" target="SYSTEM_OUT">
       <PatternLayout>
-<!--         <pattern>%d{HH:mm:ss} %p %m%n</pattern> -->
-         <pattern>%d{HH:mm:ss} %m%n</pattern>
+        <pattern>%d{HH:mm:ss} %m%n</pattern>
       </PatternLayout>
     </Console>
+
+    <RollingFile name="po-steps"
+      fileName="test-output/logs/po-steps-${date:yyyy.MM.dd}.log"
+      filePattern="test-output/ws-tests/logs/test-%d{yyyy.MM.dd}.log">
+      <PatternLayout>
+        <pattern>%d %m%n</pattern>
+      </PatternLayout>
+      <Policies>
+        <TimeBasedTriggeringPolicy modulate="true" />
+      </Policies>
+    </RollingFile>
+    <RollingFile name="dm"
+      fileName="test-output/logs/driver-manager-${date:yyyy.MM.dd}.log"
+      filePattern="test-output/ws-tests/logs/driver-manager-%d{yyyy.MM.dd}.log">
+      <PatternLayout>
+        <pattern>%d %m%n</pattern>
+      </PatternLayout>
+      <Policies>
+        <TimeBasedTriggeringPolicy modulate="true" />
+      </Policies>
+    </RollingFile>
+
   </Appenders>
-  
+
   <Loggers>
-    <Root level="info">
-      <AppenderRef ref="Console" level="Debug" />
+    <Root level="debug">
+      <AppenderRef ref="Console" />
     </Root>
+    <Logger level="info" name="com.home.training.ui.po" additivity="true">
+      <appender-ref ref="po-steps" />
+    </Logger>
+    <Logger level="debug" name="DM" additivity="true">
+      <appender-ref ref="dm" />
+    </Logger>
   </Loggers>
+
 </Configuration>

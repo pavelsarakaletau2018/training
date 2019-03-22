@@ -12,34 +12,34 @@ import com.home.training.ui.wd.factory.DriverFactory;
 import com.home.training.ui.wd.factory.FirefoxDriverFactory;
 
 public final class DriverManager {
-    private static final Logger LOG = LogManager.getLogger();
-    private static WebDriver driver;
+    private static final Logger LOG = LogManager.getLogger("DM");
+    private static ThreadLocal<WebDriver> driverLocal = new ThreadLocal<>();
 
     private DriverManager() {
     }
 
     public static WebDriver initDriver(String browserType) {
-        if (driver != null) {
-            LOG.debug("Driver is already initialized: " + driver);
+        if (driverLocal.get() != null) {
+            LOG.debug("Driver is already initialized: " + driverLocal.get());
         } else {
-            driver = initAndGetDriver(browserType);
-            LOG.debug("Provided driver: " + driver);
+            driverLocal.set(initAndGetDriver(browserType));
+            LOG.debug("Provided driver: " + driverLocal.get());
         }
-        return driver;
+        return driverLocal.get();
     }
 
     public static WebDriver getDriverInstance() {
-        if (driver == null) {
+        if (driverLocal.get() == null) {
             LOG.warn("Driver was not initialized!");
             throw new IllegalStateException("Driver is not initialized, call initDriver() first.");
         }
-        return driver;
+        return driverLocal.get();
     }
 
     public static void closeDriver() {
-        if (driver != null) {
-            driver.quit();
-            driver = null;
+        if (driverLocal.get() != null) {
+            driverLocal.get().quit();
+            driverLocal.set(null);
             LOG.debug("Driver quit.\n");
         }
     }

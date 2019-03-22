@@ -14,7 +14,7 @@ public class SuiteListener extends TestListenerAdapter implements ISuiteListener
 
     @Override
     public void onStart(ISuite suite) {
-        LOG.info("<<<<<<< SUITE START: '" + suite.getName() + "' >>>>>>>\n");
+        LOG.info("<<<<<<< SUITE START: '" + suite.getName() + "' >>>>>>>");
     }
 
     @Override

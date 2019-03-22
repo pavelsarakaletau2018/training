@@ -1,8 +1,8 @@
 package com.home.training.tests.mail;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import com.home.training.ui.po.MainPageObject;
 import com.home.training.ui.po.SignInPageObject;
@@ -25,7 +25,10 @@ public class SignInTest extends BaseTest {
                 .goNext()
                 .setPassword(PASSWORD)
                 .goNext();
-        Assert.assertTrue(mainPage.isSignInState(), "User state is sign out!");
+        SoftAssert loginStateAssert = new SoftAssert();
+        loginStateAssert.assertTrue(mainPage.isSignInState(), "User state is sign out!");
+        loginStateAssert.assertFalse(mainPage.isSignOutState(), "User state is sign out!");
+        loginStateAssert.assertAll();
     }
 
 }

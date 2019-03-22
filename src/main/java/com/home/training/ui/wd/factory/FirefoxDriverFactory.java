@@ -2,7 +2,6 @@ package com.home.training.ui.wd.factory;
 
 import java.util.ResourceBundle;
 
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.PageLoadStrategy;
@@ -11,18 +10,18 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-import com.home.training.ui.wd.constant.DriverConstants;
 import com.home.training.ui.constant.PropertyConstants;
+import com.home.training.ui.wd.constant.DriverConstants;
 
 public class FirefoxDriverFactory implements DriverFactory {
-    private static final Logger LOG = LogManager.getLogger();
+    private static final Logger LOG = LogManager.getLogger("DM");
 
     private static ResourceBundle bundle = ResourceBundle.getBundle(PropertyConstants.WD_BASENAME);
 
     @Override
     public WebDriver getWebDriver() {
         if (null == System.getenv(DriverConstants.SYSTEM_VAR_FIREFOX)) {
-            // LOG.log(Level.ERROR, "Failed to get system property for gecko.driver");
+            LOG.error("Failed to get system property for gecko.driver");
             System.setProperty(DriverConstants.SYSTEM_VAR_FIREFOX,
                     bundle.getString(PropertyConstants.FIREFOX_PATH_PROP));
         } else {

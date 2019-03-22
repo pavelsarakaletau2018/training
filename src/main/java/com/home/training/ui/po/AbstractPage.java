@@ -7,6 +7,7 @@ import java.time.Duration;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -19,31 +20,41 @@ import com.home.training.ui.constant.TimeConstants;
 public abstract class AbstractPage {
 
     protected WebDriver driver;
-    private Wait<WebDriver> waiterFor5sec;
+    private Wait<WebDriver> fluentWait;
 
     public abstract AbstractPage openPage();
 
     public AbstractPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        waiterFor5sec = new FluentWait<WebDriver>(driver)
+        fluentWait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(TimeConstants.ENABLED_TIMEOUT_SECONDS))
                 .pollingEvery(Duration.ofMillis(TimeConstants.ENABLED_PULLING_MILLIS))
-                .ignoring(NoSuchElementException.class);
+                .ignoring(NoSuchElementException.class)
+                .ignoring(TimeoutException.class);
     }
 
     protected WebElement waitEnabled(WebElement element) {
-        return waiterFor5sec.until(ExpectedConditions.elementToBeClickable(element));
+        return fluentWait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     protected WebElement waitPresent(WebElement element) {
-        return waiterFor5sec.until(ExpectedConditions.visibilityOf(element));
+        return fluentWait.until(ExpectedConditions.visibilityOf(element));
     }
 
     protected WebElement clickByJavaScript(WebElement element) {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", waitEnabled(element));
         return element;
+    }
+
+    protected boolean isElementPresent(WebElement element) {
+        try {
+            fluentWait.until(ExpectedConditions.visibilityOf(element));
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
 }

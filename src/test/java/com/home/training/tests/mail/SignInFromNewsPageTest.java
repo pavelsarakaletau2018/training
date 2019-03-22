@@ -5,9 +5,10 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.home.training.ui.po.MainPageObject;
+import com.home.training.ui.po.NewsPageObject;
 import com.home.training.ui.po.SignInPageObject;
 
-public class SignInTest extends BaseTest {
+public class SignInFromNewsPageTest extends BaseTest {
     private static final String NAME = "pavel.sarakaletau@yahoo.com";
     private static final String PASSWORD = "testpassword2";
     private MainPageObject mainPage;
@@ -20,14 +21,15 @@ public class SignInTest extends BaseTest {
 
     @Test(groups = { "signin" }, description = "Perform sign in operation and check the result.")
     public void signInTest() {
-        SignInPageObject signInPage = mainPage.goUserSignIn();
+        NewsPageObject newsPage = mainPage.goToNews();
+        SignInPageObject signInPage = newsPage.goUserSignIn();
         signInPage.setUserName(NAME)
                 .goNext()
                 .setPassword(PASSWORD)
                 .goNext();
         SoftAssert loginStateAssert = new SoftAssert();
-        loginStateAssert.assertTrue(mainPage.isUserSignedIn(), "User state is sign out!");
-        loginStateAssert.assertFalse(mainPage.isUserSignedOut(), "User state is sign out!");
+        loginStateAssert.assertTrue(newsPage.isUserSignedIn(), "User state is sign out!");
+        loginStateAssert.assertFalse(newsPage.isUserSignedOut(), "User state is sign out!");
         loginStateAssert.assertAll();
     }
 

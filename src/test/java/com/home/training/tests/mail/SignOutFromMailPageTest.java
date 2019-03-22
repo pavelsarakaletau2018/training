@@ -14,16 +14,16 @@ public class SignOutFromMailPageTest extends BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void doPrepare() {
         mainPage = new MainPageObject(driver);
-        SignInPageObject signInPage = mainPage.openPage().goSignIn();
+        SignInPageObject signInPage = mainPage.openPage().goUserSignIn();
         signInPage.setUserName("pavel.sarakaletau@yahoo.com")
                 .goNext().setPassword("testpassword2").goNext();
     }
 
     @Test(groups = { "signout" }, description = "Perform sign out operation and check the result.")
     public void signOutFromMailPageTest() {
-        MailPageObject mailPage = mainPage.gotoMail();
+        MailPageObject mailPage = mainPage.gotoUserMail();
         mainPage = mailPage.signOut();
-        Assert.assertTrue(mainPage.isSignOutState(), "User state is sign in!");
+        Assert.assertTrue(mainPage.isUserSignedOut(), "User state is sign in!");
     }
 
 }

@@ -39,12 +39,12 @@ public class SignInDPTest {
 
     @Test(description = "Is running by LogInTestFactory")
     public void signInTest() {
-        SignInPageObject signInPage = mainPage.goSignIn();
+        SignInPageObject signInPage = mainPage.goUserSignIn();
         signInPage.setUserName("pavel.sarakaletau@yahoo.com")
                 .goNext()
                 .setPassword("testpassword2")
                 .goNext();
-        Assert.assertTrue(mainPage.isSignInState(), "User state is sign out!");
+        Assert.assertTrue(mainPage.isUserSignedIn(), "User state is sign out!");
     }
 
 }

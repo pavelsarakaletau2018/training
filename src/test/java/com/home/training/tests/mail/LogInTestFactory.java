@@ -6,7 +6,6 @@ import com.home.training.ui.wd.constant.DriverType;
 
 public class LogInTestFactory {
 
-    // should be runned separately
     @Factory 
     public Object[] createInstances() {
         int numberOfBrowsers = DriverType.values().length;

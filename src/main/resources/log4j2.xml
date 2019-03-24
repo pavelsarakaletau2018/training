@@ -10,7 +10,7 @@
 
     <RollingFile name="po-steps"
       fileName="test-output/logs/po-steps-${date:yyyy.MM.dd}.log"
-      filePattern="test-output/ws-tests/logs/test-%d{yyyy.MM.dd}.log">
+      filePattern="test-output/logs/test-%d{yyyy.MM.dd}.log">
       <PatternLayout>
         <pattern>%d %m%n</pattern>
       </PatternLayout>
@@ -18,9 +18,21 @@
         <TimeBasedTriggeringPolicy modulate="true" />
       </Policies>
     </RollingFile>
+    
     <RollingFile name="dm"
       fileName="test-output/logs/driver-manager-${date:yyyy.MM.dd}.log"
-      filePattern="test-output/ws-tests/logs/driver-manager-%d{yyyy.MM.dd}.log">
+      filePattern="test-output/logs/driver-manager-%d{yyyy.MM.dd}.log">
+      <PatternLayout>
+        <pattern>%d %m%n</pattern>
+      </PatternLayout>
+      <Policies>
+        <TimeBasedTriggeringPolicy modulate="true" />
+      </Policies>
+    </RollingFile>
+    
+    <RollingFile name="proxy" append="false"
+      fileName="test-output/logs/proxy-${date:yyyy.MM.dd-HH.mm.ss}.log"
+      filePattern="test-output/logs/proxy-%d{yyyy.MM.dd}.log">
       <PatternLayout>
         <pattern>%d %m%n</pattern>
       </PatternLayout>
@@ -40,6 +52,9 @@
     </Logger>
     <Logger level="debug" name="DM" additivity="true">
       <appender-ref ref="dm" />
+    </Logger>
+    <Logger level="debug" name="PROXY" additivity="true">
+      <appender-ref ref="proxy" />
     </Logger>
   </Loggers>
 

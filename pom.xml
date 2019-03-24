@@ -16,6 +16,12 @@
     <java.version>1.8</java.version>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <!-- <<<<<<< Test parameters, may be overrided in maven command line >>>>>>>> -->
+    <suiteXmlFile>src/main/resources/suite/registration-module-tests.xml</suiteXmlFile>
+    <browser>firefox</browser>
+    <!-- normal, eager, none -->
+    <fox-page-loading>eager</fox-page-loading>
+    <proxy>true</proxy>
   </properties>
 
   <dependencies>
@@ -35,10 +41,45 @@
       <artifactId>log4j-core</artifactId>
       <version>2.11.2</version>
     </dependency>
-    <!-- <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-api</artifactId>
-      <version>2.11.2</version>
-    </dependency> -->
+    <dependency>
+      <groupId>net.lightbody.bmp</groupId>
+      <artifactId>browsermob-core</artifactId>
+      <version>2.1.5</version>
+      <!-- declare the exclusion here -->
+      <exclusions>
+        <exclusion>
+          <groupId>org.seleniumhq.selenium</groupId>
+          <artifactId>selenium-java</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <properties>
+            <property>
+              <name>listener</name>
+              <value>com.home.training.listener.SuiteListener,com.home.training.listener.TestListener</value>
+            </property>
+          </properties>
+          <systemPropertyVariables>
+            <browser>${browser}</browser>
+            <use-proxy>${proxy}</use-proxy>
+            <fox-page-loading-strategy>${fox-page-loading}</fox-page-loading-strategy>
+          </systemPropertyVariables>
+          <useSystemClassLoader>false</useSystemClassLoader>
+          <suiteXmlFiles>
+            <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+          </suiteXmlFiles>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+
 </project>

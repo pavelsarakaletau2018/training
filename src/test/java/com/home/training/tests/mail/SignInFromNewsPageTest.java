@@ -23,10 +23,8 @@ public class SignInFromNewsPageTest extends BaseTest {
     public void signInTest() {
         NewsPageObject newsPage = mainPage.goToNews();
         SignInPageObject signInPage = newsPage.goUserSignIn();
-        signInPage.setUserName(NAME)
-                .goNext()
-                .setPassword(PASSWORD)
-                .goNext();
+        signInPage.setUserName(NAME).goNext().setPassword(PASSWORD).goNext();
+        
         SoftAssert loginStateAssert = new SoftAssert();
         loginStateAssert.assertTrue(newsPage.isUserSignedIn(), "User state is sign out!");
         loginStateAssert.assertFalse(newsPage.isUserSignedOut(), "User state is sign out!");

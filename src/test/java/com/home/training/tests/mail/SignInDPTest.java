@@ -12,7 +12,8 @@ import com.home.training.ui.po.SignInPageObject;
 import com.home.training.ui.wd.drivermanager.DriverManager;
 
 public class SignInDPTest {
-
+    private static final String NAME = "pavel.sarakaletau@yahoo.com";
+    private static final String PASSWORD = "testpassword2";
     private MainPageObject mainPage;
     private String browser;
     WebDriver driver;
@@ -40,10 +41,8 @@ public class SignInDPTest {
     @Test(description = "Is running by LogInTestFactory")
     public void signInTest() {
         SignInPageObject signInPage = mainPage.goUserSignIn();
-        signInPage.setUserName("pavel.sarakaletau@yahoo.com")
-                .goNext()
-                .setPassword("testpassword2")
-                .goNext();
+        signInPage.setUserName(NAME).goNext().setPassword(PASSWORD).goNext();
+        
         Assert.assertTrue(mainPage.isUserSignedIn(), "User state is sign out!");
     }
 

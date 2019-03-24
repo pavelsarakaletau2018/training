@@ -2,6 +2,7 @@ package com.home.training.ui.wd.factory;
 
 import java.util.ResourceBundle;
 
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.PageLoadStrategy;
@@ -11,7 +12,10 @@ import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 import com.home.training.ui.constant.PropertyConstants;
+import com.home.training.ui.constant.SystemConstants;
 import com.home.training.ui.wd.constant.DriverConstants;
+
+import proxy.ProxyHandler;
 
 public class FirefoxDriverFactory implements DriverFactory {
     private static final Logger LOG = LogManager.getLogger("DM");
@@ -31,10 +35,18 @@ public class FirefoxDriverFactory implements DriverFactory {
 
         FirefoxOptions options = new FirefoxOptions();
         options.setLogLevel(FirefoxDriverLogLevel.ERROR);
-        // dangerous option!!
-        options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
         System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "/dev/null");
+
+        String pageLoadStrategy = (null != System.getProperty(SystemConstants.SYS_PROP_FOX_STRATEGY)
+                ? System.getProperty(SystemConstants.SYS_PROP_FOX_STRATEGY)
+                : "normal");
+        options.setPageLoadStrategy(PageLoadStrategy.valueOf(pageLoadStrategy.toUpperCase()));
+
+        if (Boolean.parseBoolean(System.getProperty(SystemConstants.SYS_PROP_PROXY))) {
+            LOG.log(Level.DEBUG, "Setting a proxy.");
+            options.setProxy(ProxyHandler.INSTANCE.getSeleniumProxy());
+        }
         return new FirefoxDriver(options);
     }
 }

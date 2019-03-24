@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
+import com.home.training.ui.constant.JsConstants;
 import com.home.training.ui.constant.TimeConstants;
 
 public abstract class AbstractComponent {
@@ -39,7 +40,7 @@ public abstract class AbstractComponent {
 
     protected WebElement clickByJavaScript(WebElement element) {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", waitEnabled(element));
+        executor.executeScript(JsConstants.ARG_0_CLICK, waitEnabled(element));
         return element;
     }
 

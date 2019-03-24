@@ -18,7 +18,7 @@ public final class DriverConfigurator {
         driver.manage().timeouts().setScriptTimeout(TimeConstants.SCRIPT_TIMEOUT, TimeUnit.SECONDS);
         // driver.manage().timeouts().implicitlyWait(TimeConstants.IMPLICITLY_TIMEOUT,
         // TimeUnit.SECONDS);
-        // driver.manage().window().maximize();
+        driver.manage().window().maximize();
 
         return driver;
     }

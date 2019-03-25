@@ -27,7 +27,6 @@ public class SignOutTest extends BaseTest {
         loginStateAssert.assertTrue(mainPage.isUserSignedOut(), "User state is signed in!");
         loginStateAssert.assertFalse(mainPage.isUserSignedIn(), "User state is signed in!");
         loginStateAssert.assertAll();
-
     }
 
 }

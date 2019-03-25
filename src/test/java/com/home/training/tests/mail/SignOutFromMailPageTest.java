@@ -18,13 +18,13 @@ public class SignOutFromMailPageTest extends BaseTest {
         mainPage = new MainPageObject(driver);
         SignInPageObject signInPage = mainPage.openPage().goUserSignIn();
         signInPage.setUserName(NAME).goNext().setPassword(PASSWORD).goNext();
-
     }
 
     @Test(groups = { "signout" }, description = "Perform sign out operation and check the result.")
     public void signOutFromMailPageTest() {
         MailPageObject mailPage = mainPage.gotoUserMail();
         mainPage = mailPage.signOut();
+       
         Assert.assertTrue(mainPage.isUserSignedOut(), "User state is sign in!");
     }
 

@@ -11,11 +11,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import com.home.training.constant.SystemConstants;
 import com.home.training.ui.constant.PropertyConstants;
-import com.home.training.ui.constant.SystemConstants;
 import com.home.training.ui.wd.constant.DriverConstants;
 
-import proxy.ProxyHandler;
+import proxy.bmp.ProxyHandler;
 
 public class FirefoxDriverFactory implements DriverFactory {
     private static final Logger LOG = LogManager.getLogger("DM");
@@ -44,7 +44,7 @@ public class FirefoxDriverFactory implements DriverFactory {
         options.setPageLoadStrategy(PageLoadStrategy.valueOf(pageLoadStrategy.toUpperCase()));
 
         if (Boolean.parseBoolean(System.getProperty(SystemConstants.SYS_PROP_PROXY))) {
-            LOG.log(Level.DEBUG, "Setting a proxy.");
+            LOG.log(Level.DEBUG, "Setting a proxy for geckodriver.");
             options.setProxy(ProxyHandler.INSTANCE.getSeleniumProxy());
         }
         return new FirefoxDriver(options);

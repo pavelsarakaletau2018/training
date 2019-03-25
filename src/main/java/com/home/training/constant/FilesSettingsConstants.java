@@ -1,4 +1,4 @@
-package com.home.training.ui.constant;
+package com.home.training.constant;
 
 public final class FilesSettingsConstants {
 

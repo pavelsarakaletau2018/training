@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
-import com.home.training.ui.constant.SystemConstants;
+import com.home.training.constant.SystemConstants;
 import com.home.training.ui.wd.drivermanager.DriverManager;
 
 public class BaseTest {

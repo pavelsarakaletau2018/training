@@ -22,6 +22,7 @@
     <!-- normal, eager, none -->
     <fox-page-loading>eager</fox-page-loading>
     <proxy>true</proxy>
+    <proxy-log>false</proxy-log>
   </properties>
 
   <dependencies>
@@ -70,6 +71,7 @@
           <systemPropertyVariables>
             <browser>${browser}</browser>
             <use-proxy>${proxy}</use-proxy>
+            <proxy-log>${proxy-log}</proxy-log>
             <fox-page-loading-strategy>${fox-page-loading}</fox-page-loading-strategy>
           </systemPropertyVariables>
           <useSystemClassLoader>false</useSystemClassLoader>

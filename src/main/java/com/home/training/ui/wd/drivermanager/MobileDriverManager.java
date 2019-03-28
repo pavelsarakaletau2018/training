@@ -6,17 +6,16 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
-import com.home.training.ui.wd.constant.DriverType;
+import com.home.training.ui.wd.constant.MobileDriverType;
 import com.home.training.ui.wd.factory.AndroidAppDriverFactory;
-import com.home.training.ui.wd.factory.ChromeDriverFactory;
+import com.home.training.ui.wd.factory.AndroidChromeDriverFactory;
 import com.home.training.ui.wd.factory.DriverFactory;
-import com.home.training.ui.wd.factory.FirefoxDriverFactory;
 
-public final class DriverManager {
+public final class MobileDriverManager {
     private static final Logger LOG = LogManager.getLogger("DM");
     private static ThreadLocal<WebDriver> driverLocal = new ThreadLocal<>();
 
-    private DriverManager() {
+    private MobileDriverManager() {
     }
 
     public static WebDriver initDriver(String browserType) {
@@ -47,17 +46,14 @@ public final class DriverManager {
 
     private static WebDriver initAndGetDriver(String browserType) {
         DriverFactory factory = null;
-        DriverType driverType = null;
+        MobileDriverType driverType = null;
         try {
-            driverType = DriverType.valueOf(browserType.toUpperCase(Locale.getDefault()));
+            driverType = MobileDriverType.valueOf(browserType.toUpperCase(Locale.getDefault()));
             switch (driverType) {
-            case CHROME:
-                factory = new ChromeDriverFactory();
+            case ANDROID_CHROME:
+                factory = new AndroidChromeDriverFactory();
                 break;
-            case FIREFOX:
-                factory = new FirefoxDriverFactory();
-                break;
-            case ANDROID:
+            case ANDROID_APP:
                 factory = new AndroidAppDriverFactory();
                 break;
             default:
@@ -65,10 +61,10 @@ public final class DriverManager {
             }
         } catch (IllegalArgumentException e) {
             LOG.error("Illegal browser argument recieved: " + browserType
-                    + ", chrome driver will be use as default.");
-            factory = new ChromeDriverFactory();
+                    + ", android chrome driver will be use as default.");
+            factory = new AndroidChromeDriverFactory();
         }
-        return DriverConfigurator.getConfiguredDriver(factory.getWebDriver());
+        return factory.getWebDriver();
     }
 
 }

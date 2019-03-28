@@ -6,7 +6,6 @@ import net.lightbody.bmp.BrowserMobProxy;
 import net.lightbody.bmp.BrowserMobProxyServer;
 import net.lightbody.bmp.client.ClientUtil;
 import net.lightbody.bmp.filters.ResponseFilter;
-import proxy.bmp.filter.SimpleResponseFilter;
 
 public enum ProxyHandler {
     INSTANCE;
@@ -15,7 +14,7 @@ public enum ProxyHandler {
     public BrowserMobProxy getProxy() {
         if (null == proxy) {
             proxy = new BrowserMobProxyServer();
-            proxy.addResponseFilter(new SimpleResponseFilter());
+//            proxy.addResponseFilter(new SimpleResponseFilter());
             proxy.start(0);
         }
         return proxy;

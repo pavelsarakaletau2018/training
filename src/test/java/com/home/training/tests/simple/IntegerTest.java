@@ -14,7 +14,6 @@ public class IntegerTest {
 
     @Test
     public void testIntegerValue() {
-        // System.err.println("Param: " + param);
         assertNotEquals(1, param, "Param is 1!");
     }
 

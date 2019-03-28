@@ -11,7 +11,6 @@
 
   <test name="Example test from suite test">
 
-    <!-- <groups> <run> <include name="group1" /> <include name="group2" /> </run> </groups> -->
 
     <!-- <classes> <class name="com.home.training.IntegerTestFactory" /> </classes> -->
 

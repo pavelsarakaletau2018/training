@@ -10,8 +10,6 @@
   </listeners>
 
   <test name="Example test from suite test">
-
-
     <!-- <classes> <class name="com.home.training.IntegerTestFactory" /> </classes> -->
 
     <packages>

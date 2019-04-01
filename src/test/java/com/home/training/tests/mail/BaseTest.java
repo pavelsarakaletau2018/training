@@ -10,7 +10,7 @@ import com.home.training.constant.SystemConstants;
 import com.home.training.ui.wd.drivermanager.DriverManager;
 
 public class BaseTest {
-    WebDriver driver;
+    protected WebDriver driver;
 
     @Parameters({ "browser" })
     @BeforeClass(alwaysRun = true)

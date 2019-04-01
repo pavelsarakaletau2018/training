@@ -1,3 +1,5 @@
+.allure/
+.allure-results/
 
 **/target/
 */test-output/

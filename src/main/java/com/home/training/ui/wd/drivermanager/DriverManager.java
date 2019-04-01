@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import com.home.training.ui.wd.constant.DriverType;
-import com.home.training.ui.wd.factory.AndroidAppDriverFactory;
 import com.home.training.ui.wd.factory.ChromeDriverFactory;
 import com.home.training.ui.wd.factory.DriverFactory;
 import com.home.training.ui.wd.factory.FirefoxDriverFactory;
@@ -56,9 +55,6 @@ public final class DriverManager {
                 break;
             case FIREFOX:
                 factory = new FirefoxDriverFactory();
-                break;
-            case ANDROID:
-                factory = new AndroidAppDriverFactory();
                 break;
             default:
                 break;

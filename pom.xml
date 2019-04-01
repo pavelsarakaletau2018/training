@@ -23,6 +23,8 @@
     <fox-page-loading>eager</fox-page-loading>
     <proxy>true</proxy>
     <proxy-log>false</proxy-log>
+    <aspectj.version>1.9.2</aspectj.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <dependencies>
@@ -54,12 +56,21 @@
         </exclusion>
       </exclusions>
     </dependency>
-  <!-- https://mvnrepository.com/artifact/io.appium/java-client -->
-      <dependency>
-        <groupId>io.appium</groupId>
-        <artifactId>java-client</artifactId>
-        <version>7.0.0</version>
-      </dependency>
+    <dependency>
+      <groupId>io.appium</groupId>
+      <artifactId>java-client</artifactId>
+      <version>7.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-testng</artifactId>
+      <version>2.10.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>1.9.2</version>
+    </dependency>
 
   </dependencies>
 
@@ -81,13 +92,28 @@
             <use-proxy>${proxy}</use-proxy>
             <proxy-log>${proxy-log}</proxy-log>
             <fox-page-loading-strategy>${fox-page-loading}</fox-page-loading-strategy>
+            <!-- <allure.results.directory>allure-results</allure.results.directory> -->
+            <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
           </systemPropertyVariables>
           <useSystemClassLoader>false</useSystemClassLoader>
           <suiteXmlFiles>
             <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
           </suiteXmlFiles>
+          <argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+          </argLine>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>2.9</version>
+        <configuration>
+          <reportVersion>2.6.0</reportVersion>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
 
